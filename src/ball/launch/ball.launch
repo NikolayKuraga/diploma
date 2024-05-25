@@ -1,0 +1,5 @@
+<launch>
+ 
+	<node pkg="ball" type="ball.py" name="ball" output="screen"/>
+
+</launch>

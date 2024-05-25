@@ -1,0 +1,5 @@
+stat
+/home/nikolay/Work/balloon_ws/devel/.private/stat/cmake.lock /home/nikolay/Work/balloon_ws/devel/./cmake.lock
+/home/nikolay/Work/balloon_ws/devel/.private/stat/share/stat/cmake/statConfig.cmake /home/nikolay/Work/balloon_ws/devel/share/stat/cmake/statConfig.cmake
+/home/nikolay/Work/balloon_ws/devel/.private/stat/share/stat/cmake/statConfig-version.cmake /home/nikolay/Work/balloon_ws/devel/share/stat/cmake/statConfig-version.cmake
+/home/nikolay/Work/balloon_ws/devel/.private/stat/lib/pkgconfig/stat.pc /home/nikolay/Work/balloon_ws/devel/lib/pkgconfig/stat.pc
