@@ -2,7 +2,10 @@
  
 	<arg name="log_data" default="false"/>
 
-	<node pkg="demo" type="square.py" name="square" output="screen"/>
+	<node pkg="demo" type="chase.py" name="chase" output="screen"/>
+	<node pkg="ball" type="ball.py" name="ball_controller" output="screen"/>
+	<node pkg="demo" type="detector.py" name="detector" output="screen"/>
+	<node pkg="demo" type="visualizer.py" name="visualizer" output="screen"/>
 	<node pkg="demo" type="filter.py" name="filter" output="screen"/>
 
 	<group if="$(arg log_data)">

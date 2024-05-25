@@ -2,8 +2,6 @@
 
 import time
 
-import numpy as np
-
 import rospy
 from cv_bridge import CvBridge
 from geometry_msgs.msg import TwistStamped, PoseStamped
@@ -15,7 +13,7 @@ from std_msgs.msg import Float32MultiArray, UInt64
 from detector import Detector
 from movement import MovementController
 from strategy import *
-#from square import callback
+
 
 ################################################################################################
 
@@ -37,11 +35,11 @@ class Controller:
 
         self.rate = rospy.Rate(10)
         self.bridge = CvBridge()
-        self.detector = None
+        self.detector = Detector()
         self.paused = True
 
         self.img_size = (1280, 720)
-        self.img_center = tuple(x / 2 for  x in self.img_size)
+        self.img_center = (640, 360)  # image center coordinates
 
         # self.movement_controller = MovementController(AngleHighSpeedStrategy(self.img_size[0], self.img_size[1]))
         self.movement_controller = MovementController(HighSpeedStrategy(self.img_size[0], self.img_size[1]))
@@ -54,18 +52,15 @@ class Controller:
         rospy.Subscriber("mavros/local_position/velocity_local", TwistStamped, self.mav_vel_cb)
 
         # Image subscriber to read data from camera
-        #self.img_sub = rospy.Subscriber('/webcam/image_raw', Image, self.img_cb)
+        # self.img_sub = rospy.Subscriber('/webcam/image_raw', Image, self.img_cb)
 
-    def start_detector(self):
-        '''start red ball detector'''
-        self.detector = Detector()
+        # Subscribe to detector
         rospy.Subscriber('/filter/pos_image', Float32MultiArray, self.detector_cb)
 
     def arm_and_takeoff(self, target_alt):
         while not self.initialized:
             print("Waiting for initialization")
             time.sleep(1)
-
         # TODO use better condition, subscribe to mavros state topic
         if self.mav_pos[2] > 0.5:
             return
@@ -138,11 +133,9 @@ if __name__ == '__main__':
     print("Initializing system")
     rospy.init_node('controller_node', anonymous=True)
     controller = Controller()
-    controller.start_detector()
     print("Arming")
-    controller.arm_and_takeoff(60)
-    print('Done arming')
-    #print("Starting detection")
-    #controller.start()
+    controller.arm_and_takeoff(20)
+    print("Starting detection")
+    controller.start()
     while not rospy.is_shutdown():
         rospy.spin()
