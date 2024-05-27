@@ -1,0 +1,10 @@
+<launch>
+  
+  <include file="$(find usb_cam)/launch/320x240_30_mjpeg.launch"/>
+
+  <include file="$(find opencv_apps)/launch/lk_flow.launch">
+    <arg name="image"	value="/usb_cam/image_raw"/>
+  </include>
+
+  <node name="reinit_points" pkg="chvk_tools" type="init_points.sh"/>
+</launch>

@@ -3,7 +3,6 @@
 	<arg name="log_data" default="false"/>
 
 	<node pkg="demo" type="square.py" name="square" output="screen"/>
-	<node pkg="demo" type="filter.py" name="filter" output="screen"/>
 
 	<group if="$(arg log_data)">
 	    <node pkg="stat" type="logger.py" name="logger"/>

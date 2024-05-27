@@ -1,0 +1,24 @@
+
+* What is this?
+
+I'm tired of attaching different utilities I use only to different
+projects. So this is my personal repository (also ROS package).
+
+* Short introduction
+
+Later.
+
+* Description of directories
+
+** config/
+
+Contains different configation files for a variety of devices and
+programs (camera calibraion files, FCU parameters files, so on)
+
+*** config/cam
+
+Some yaml files :D .
+
+*** config/fcu
+
+FCU parameter files.
